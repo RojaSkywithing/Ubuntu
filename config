@@ -1,0 +1,289 @@
+*** General ***
+
+owner    = X
+contact  = some@address.nowhere
+mailhost = my.mail.host
+imgcache = /usr/local/smokeping/htdocs/cache
+imgurl   = cache
+datadir  = /usr/local/smokeping/htdocs/data
+piddir  = /usr/local/smokeping/htdocs/var
+cgiurl   = http://138.2.10.62:9008/smokeping.cgi
+smokemail = /usr/local/smokeping/etc/smokemail.dist
+tmail = /usr/local/smokeping/etc/tmail.dist
+syslogfacility = local0
+
+
+*** Alerts ***
+
+to = alertee@address.somewhere
+from = smokealert@company.xy
+
++someloss
+type = loss
+pattern = >0%,*12*,>0%,*12*,>0%
+comment = loss 3 times  in a row
+
+
+*** Database ***
+
+step     = 10
+pings    = 5
+
+
+AVERAGE  0.5   1  1008
+AVERAGE  0.5  12  4320
+    MIN  0.5  12  4320
+    MAX  0.5  12  4320
+AVERAGE  0.5 144   720
+    MAX  0.5 144   720
+    MIN  0.5 144   720
+
+
+*** Presentation ***
+
+template = /usr/local/smokeping/etc/basepage.html.dist
+charset = utf-8
+
++ overview 
+
+width = 600
+height = 200
+range = 24h
+
++ detail
+
+width = 600
+height = 200
+unison_tolerance = 2
+
+"Last 5 Minutes"    5m
+"Last 10 Minutes"    10m
+"Last 30 Minutes"    30m
+"Last 1 Hour"    1h
+"Last 3 Hours"    3h
+"Last 24 Hours"   24h
+"Last 3 Days"    3d
+"Last 7 Days"   7d
+"Last 30 Days"    30d
+"Last 1 Year"    1y
+
+
+*** Probes ***
+
++ TCPPing
+binary = /usr/bin/tcpping-sp
+forks = 5
+offset = 50%
+step = 10
+timeout = 5
+
+
+*** Slaves ***
+
+secrets=/usr/local/smokeping/etc/smokeping_secrets.dist
+
++ JP
+display_name = 东京
+location = 东京
+color = 0000ff
+
+
+*** Targets ***
+
+probe = TCPPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Welcome to this SmokePing website. <br />
+
++ Other
+menu = 三大网络监控
+title = 监控统计
+ 
+++ CT
+ 
+menu = 电信网络监控
+title = 电信网络监控列表
+host = /Other/CT/CT-BJ /Other/CT/CT-TJ /Other/CT/CT-HLJ /Other/CT/CT-SH /Other/CT/CT-SC /Other/CT/CT-GZ
+ 
++++ CT-BJ
+ 
+menu = 北京电信
+title = 北京电信
+alerts = someloss
+host = 202.96.199.133
+ 
++++ CT-TJ
+ 
+menu = 天津电信
+title = 天津电信
+alerts = someloss
+host = 219.150.32.132
+ 
++++ CT-HLJ
+ 
+menu = 黑龙江电信
+title = 黑龙江电信
+alerts = someloss
+host = 219.147.198.242
+ 
++++ CT-SH
+ 
+menu = 上海电信
+title = 上海电信
+alerts = someloss
+host = 180.153.28.5
+ 
++++ CT-SC
+ 
+menu = 四川电信
+title = 四川电信
+alerts = someloss
+host = 61.139.2.69
+ 
++++ CT-GZ
+ 
+menu = 深圳电信
+title = 深圳电信
+alerts = someloss
+host = 103.44.253.69
+ 
+ 
+++ CU
+ 
+menu = 联通网络监控
+title = 联通网络监控列表
+host = /Other/CU/CU-BJ /Other/CU/CU-TJ /Other/CU/CU-HLJ /Other/CU/CU-SH /Other/CU/CU-SC /Other/CU/CU-GZ
+ 
++++ CU-BJ
+ 
+menu = 北京联通
+title = 北京联通
+alerts = someloss
+host = 61.135.169.121
+ 
++++ CU-TJ
+ 
+menu = 天津联通
+title = 天津联通
+alerts = someloss
+host = 103.24.228.1
+ 
++++ CU-HLJ
+ 
+menu = 黑龙江联通
+title = 黑龙江联通
+alerts = someloss
+host = 202.97.224.69
+ 
++++ CU-SH
+ 
+menu = 上海联通
+title = 上海联通
+alerts = someloss
+host = 211.95.52.116
+ 
+ 
++++ CU-SC
+ 
+menu = 四川联通
+title = 四川联通
+alerts = someloss
+host = 119.6.6.6
+ 
++++ CU-GZ
+ 
+menu = 广东联通
+title = 广东联通
+alerts = someloss
+host = 221.5.88.88
+ 
+ 
+ 
+++ CMCC
+ 
+menu = 移动网络监控
+title = 移动网络监控列表
+host = /Other/CMCC/CMCC-BJ /Other/CMCC/CMCC-TJ /Other/CMCC/CMCC-HLJ /Other/CMCC/CMCC-SH /Other/CMCC/CMCC-SC /Other/CMCC/CMCC-GZ
+ 
++++ CMCC-BJ
+ 
+menu = 北京移动
+title = 北京移动
+alerts = someloss
+host = 221.130.33.52
+ 
++++ CMCC-TJ
+ 
+menu = 天津移动
+title = 天津移动
+alerts = someloss
+host = 211.137.160.5
+ 
++++ CMCC-HLJ
+ 
+menu = 昆明移动
+title = 昆明移动
+alerts = someloss
+host = 39.130.140.2
+ 
++++ CMCC-SH
+ 
+menu = 上海移动
+title = 上海移动
+alerts = someloss
+host = 221.183.55.22
+ 
++++ CMCC-SC
+ 
+menu = 四川移动
+title = 四川移动
+alerts = someloss
+host = 218.201.4.3
+ 
++++ CMCC-GZ
+ 
+menu = 广东移动
+title = 广东移动
+alerts = someloss
+host = 211.136.192.6
+
++ global
+menu = 国际线路
+title = 监控统计
+host = /global/cf /global/yt /global/gg /global/sbd /global/cmi
+
+++ cf
+
+menu = Cloudflare
+title = Cloudflare
+alerts = someloss
+host = www.cloudflare.com
+
+++ yt
+
+menu = YouTube
+title = YouTube
+alerts = someloss
+host = www.youTube.com
+
+++ gg
+
+menu = google
+title = google
+alerts = someloss
+host = www.google.com
+
+++ sbd
+
+menu = 美国斯巴达
+title = 美国斯巴达
+alerts = someloss
+host = 45.154.214.42
+
+++ cmi
+
+menu = 香港CMI
+title = 香港CMI
+alerts = someloss
+host = 117.18.13.248
