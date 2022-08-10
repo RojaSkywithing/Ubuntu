@@ -1,0 +1,19 @@
+想快速开启文件共享, 给服务器开启HTTP下载服务, 下载VPS里的文件, 可通过 simplefileserver.
+通过VPS之间的文件下载, 还能顺便测试下 VPS之间的传输和带宽.
+
+安装 simplefileserver
+本文以Debian举例 (依赖python, pip)
+
+apt install -y python3 python3-pip
+pip3 install simplefileserver
+开启http服务器
+执行 simplefileserver 8989 即可
+访问: 服务器IP地址:8989, 就可以 浏览和下载当前目录的文件
+
+生成测速文件, 测试VPS的下载速度
+可以生成100mb.bin文件测试下载速度, 执行:
+dd if=/dev/zero of=100mb.bin bs=100M count=1
+会当前目录生成 100mb.bin 文件
+
+然后可以通过 服务器IP地址:8989/100mb.bin 下载文件和测试了.
+或通过wget测试速度: wget -O /dev/null 服务器IP:8989/100mb.bin
